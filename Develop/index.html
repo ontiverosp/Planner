@@ -19,37 +19,150 @@
     <p class="lead">A simple calendar app for scheduling your work day</p>
     <p id="currentDay" class="lead"></p>
   </header>
-  <div class="container">
+  <div class="container" id="timeblocks">
     <!-- Timeblocks go here -->
-    <div class="row" id="timeblocks">
 
-    </div>
+
+  </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="../Assets/moment.js"></script>
   <script type="text/javascript">
-    //adds the day to the top of the planner.
+
     var newDiv = $("<div>");
-    var hours = ["9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm"]
+    var hours = [{
+      timeDisplay: "9:00 am",
+      timeValue: 9,
+      plans: []
+    },
+    {
+      timeDisplay: "10:00 am",
+      timeValue: 10,
+      plans: []
+    },
+    {
+      timeDisplay: "11:00 am",
+      timeValue: 11,
+      plans: []
+    },
+    {
+      timeDisplay: "12:00 pm",
+      timeValue: 12,
+      plans: []
+    },
+    {
+      timeDisplay: "1:00 pm",
+      timeValue: 13,
+      plans: []
+    },
+    {
+      timeDisplay: "2:00 pm",
+      timeValue: 14,
+      plans: []
+    },
+    {
+      timeDisplay: "3:00 pm",
+      timeValue: 15,
+      plans: []
+    },
+    {
+      timeDisplay: "4:00 pm",
+      timeValue: 16,
+      plans: []
+    },
+    {
+      timeDisplay: "5:00 pm",
+      timeValue: 17,
+      plans: []
+    }];
+    var currentTime = moment().format('H');
+    console.log(currentTime);
+    //adds the day to the top of the planner
     newDiv.text(moment().format('dddd'));
     $("#currentDay").append(newDiv);
+
     //builds the time sheet
     for (i = 0; i < hours.length; i++) {
-      console.log(hours[i]);
       //makes Block
       var block = $("<div>");
-      block.attr("class", "col-md-12");
+      block.attr("class", "row");
+
+
       //adds timestamp to blocks
-      var time = $("<p>");
-      time.text(hours[i]);
-      time.attr("style", "position: absolute; right: 7rem; top: 1rem; font-size: large;");
+      var time = $("<div>");
+      time.attr("class", "card col-md-2");
+      time.text(hours[i].timeDisplay);
+      time.attr("style", "");
       block.append(time);
+
+      //adds plans
+      var plan = $("<input>");
+      plan.attr("class", "card col-md-8");
+      plan.text("planns");
+      plan.attr("style", "");
+      block.append(plan);
+
+      //changes background of plans to indicate if time has past
+      if (currentTime > hours[i].timeValue) {
+        plan.attr("style", "background: red");
+      }
+      else if (currentTime == hours[i].timeValue) {
+        plan.attr("style", "background: blue");
+      }
+      else {
+        plan.attr("style", "background: green");
+      }
+
+
+      //adds save button
+      var save = $("<div>");
+      save.attr("class", "card col-md-2 saveBtn");
+      save.attr("id", "block"+i);
+      save.text("save icon");
+      save.attr("style", "");
+      block.append(save);
+
+      //renders the time block
       $("#timeblocks").append(block);
     }
+    //function to save plans in local storage
+    $(".saveBtn").on("click", function () {
+        var timeblock = this.getAttribute("id");
+        if (timeblock === "block0"){
+          console.log("1");
+        }
+        else if (timeblock === "block1"){
+          console.log("2");
+        }
+        else if (timeblock === "block2"){
+          console.log("3");
+        }
+        else if (timeblock === "block3"){
+          console.log("4");
+        }
+        else if (timeblock === "block4"){
+          console.log("5");
+        }
+        else if (timeblock === "block5"){
+          console.log("6");
+        }
+        else if (timeblock === "block6"){
+          console.log("7");
+        }
+        else if (timeblock === "block7"){
+          console.log("8");
+        }
+        else if (timeblock === "block8"){
+          console.log("9");
+        }
+        else {
+          console.log("Error!");
+        }
 
-    
+      });
+
 
 
   </script>
