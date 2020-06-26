@@ -77,6 +77,13 @@
       timeValue: 17,
       plans: []
     }];
+    hoursSaved = JSON.parse(localStorage.getItem('schedule'));
+    if (hoursSaved){
+      hours = hoursSaved;
+    }
+    else{
+      console.log("No saved info");
+    }
     var currentTime = moment().format('H');
     console.log(currentTime);
     //adds the day to the top of the planner
@@ -98,30 +105,44 @@
       block.append(time);
 
       //adds plans
+      var planShell = $("<div>");
+      planShell.attr("class", "card col-md-8");
+      block.append(planShell);
+      var planCont = $("<div>");
+      // planCont.attr("class", "row");
+      planShell.append(planCont);
+      for (j = 0; j < hours[i].plans.length; j++) {
+        var plans = $("<p>");
+        plans.text(hours[i].plans[j])
+        planCont.append(plans)
+      }
+
       var plan = $("<input>");
-      plan.attr("class", "card col-md-8");
-      plan.text("planns");
+      // plan.attr("class", "row");
+      plan.attr("id", "plan" + i);
       plan.attr("style", "");
-      block.append(plan);
+      planShell.append(plan);
 
       //changes background of plans to indicate if time has past
       if (currentTime > hours[i].timeValue) {
+        planShell.attr("style", "background: red");
         plan.attr("style", "background: red");
       }
       else if (currentTime == hours[i].timeValue) {
+        planShell.attr("style", "background: blue");
         plan.attr("style", "background: blue");
       }
       else {
+        planShell.attr("style", "background: green");
         plan.attr("style", "background: green");
       }
 
 
       //adds save button
       var save = $("<div>");
-      save.attr("class", "card col-md-2 saveBtn");
-      save.attr("id", "block"+i);
-      save.text("save icon");
-      save.attr("style", "");
+      save.attr("class", "card col-md-2 saveBtn far fa-save");
+      save.attr("id", "block" + i);
+      save.attr("style", "font-size: 34px; text-align: center");
       block.append(save);
 
       //renders the time block
@@ -129,39 +150,57 @@
     }
     //function to save plans in local storage
     $(".saveBtn").on("click", function () {
-        var timeblock = this.getAttribute("id");
-        if (timeblock === "block0"){
-          console.log("1");
-        }
-        else if (timeblock === "block1"){
-          console.log("2");
-        }
-        else if (timeblock === "block2"){
-          console.log("3");
-        }
-        else if (timeblock === "block3"){
-          console.log("4");
-        }
-        else if (timeblock === "block4"){
-          console.log("5");
-        }
-        else if (timeblock === "block5"){
-          console.log("6");
-        }
-        else if (timeblock === "block6"){
-          console.log("7");
-        }
-        else if (timeblock === "block7"){
-          console.log("8");
-        }
-        else if (timeblock === "block8"){
-          console.log("9");
-        }
-        else {
-          console.log("Error!");
-        }
+      var timeblock = this.getAttribute("id");
+      if (timeblock === "block0") {
+        var task = $("#plan0").val();
+        hours[0].plans.push(task);
+        localStorage.setItem('schedule', JSON.stringify(hours));
+      }
+      else if (timeblock === "block1") {
+        var task = $("#plan1").val();
+        hours[1].plans.push(task);
+        localStorage.setItem('schedule', JSON.stringify(hours));
+      }
+      else if (timeblock === "block2") {
+        var task = $("#plan2").val();
+        hours[2].plans.push(task);
+        localStorage.setItem('schedule', JSON.stringify(hours));
+      }
+      else if (timeblock === "block3") {
+        var task = $("#plan3").val();
+        hours[3].plans.push(task);
+        localStorage.setItem('schedule', JSON.stringify(hours));
+      }
+      else if (timeblock === "block4") {
+        var task = $("#plan4").val();
+        hours[4].plans.push(task);
+        localStorage.setItem('schedule', JSON.stringify(hours));
+      }
+      else if (timeblock === "block5") {
+        var task = $("#plan5").val();
+        hours[5].plans.push(task);
+        localStorage.setItem('schedule', JSON.stringify(hours));
+      }
+      else if (timeblock === "block6") {
+        var task = $("#plan6").val();
+        hours[6].plans.push(task);
+        localStorage.setItem('schedule', JSON.stringify(hours));
+      }
+      else if (timeblock === "block7") {
+        var task = $("#plan7").val();
+        hours[7].plans.push(task);
+        localStorage.setItem('schedule', JSON.stringify(hours));
+      }
+      else if (timeblock === "block8") {
+        var task = $("#plan8").val();
+        hours[8].plans.push(task);
+        localStorage.setItem('schedule', JSON.stringify(hours));
+      }
+      else {
+        console.log("Error!");
+      }
 
-      });
+    });
 
 
 
