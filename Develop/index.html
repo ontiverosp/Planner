@@ -95,6 +95,8 @@
       //makes Block
       var block = $("<div>");
       block.attr("class", "row");
+     block.attr("style","overflow: auto;")
+
 
 
       //adds timestamp to blocks
@@ -107,9 +109,9 @@
       //adds plans
       var planShell = $("<div>");
       planShell.attr("class", "card col-md-8");
+      planShell.attr("id", "planS" + i);
       block.append(planShell);
       var planCont = $("<div>");
-      // planCont.attr("class", "row");
       planShell.append(planCont);
       for (j = 0; j < hours[i].plans.length; j++) {
         var plans = $("<p>");
@@ -118,7 +120,6 @@
       }
 
       var plan = $("<input>");
-      // plan.attr("class", "row");
       plan.attr("id", "plan" + i);
       plan.attr("style", "");
       planShell.append(plan);
@@ -155,46 +156,74 @@
         var task = $("#plan0").val();
         hours[0].plans.push(task);
         localStorage.setItem('schedule', JSON.stringify(hours));
+        var line = $("<p>");
+        line.text(task)
+        $('#planS0').prepend(line);
+        
       }
       else if (timeblock === "block1") {
         var task = $("#plan1").val();
         hours[1].plans.push(task);
         localStorage.setItem('schedule', JSON.stringify(hours));
+        var line = $("<p>");
+        line.text(task)
+        $('#planS1').prepend(line);
       }
       else if (timeblock === "block2") {
         var task = $("#plan2").val();
         hours[2].plans.push(task);
         localStorage.setItem('schedule', JSON.stringify(hours));
+        var line = $("<p>");
+        line.text(task)
+        $('#planS2').prepend(line);
       }
       else if (timeblock === "block3") {
         var task = $("#plan3").val();
         hours[3].plans.push(task);
         localStorage.setItem('schedule', JSON.stringify(hours));
+        var line = $("<p>");
+        line.text(task)
+        $('#planS3').prepend(line);
       }
       else if (timeblock === "block4") {
         var task = $("#plan4").val();
         hours[4].plans.push(task);
         localStorage.setItem('schedule', JSON.stringify(hours));
+        var line = $("<p>");
+        line.text(task)
+        $('#planS4').prepend(line);
       }
       else if (timeblock === "block5") {
         var task = $("#plan5").val();
         hours[5].plans.push(task);
         localStorage.setItem('schedule', JSON.stringify(hours));
+        var line = $("<p>");
+        line.text(task)
+        $('#planS5').prepend(line);
       }
       else if (timeblock === "block6") {
         var task = $("#plan6").val();
         hours[6].plans.push(task);
         localStorage.setItem('schedule', JSON.stringify(hours));
+        var line = $("<p>");
+        line.text(task)
+        $('#planS6').prepend(line);
       }
       else if (timeblock === "block7") {
         var task = $("#plan7").val();
         hours[7].plans.push(task);
         localStorage.setItem('schedule', JSON.stringify(hours));
+        var line = $("<p>");
+        line.text(task)
+        $('#planS7').prepend(line);
       }
       else if (timeblock === "block8") {
         var task = $("#plan8").val();
         hours[8].plans.push(task);
         localStorage.setItem('schedule', JSON.stringify(hours));
+        var line = $("<p>");
+        line.text(task)
+        $('#planS8').prepend(line);
       }
       else {
         console.log("Error!");
